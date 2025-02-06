@@ -10,7 +10,7 @@ public class BallController : MonoBehaviour
 
     private Rigidbody ballRB;
     private bool isBallLaunched;
-    private InputManager inputManager;
+    [SerializeField]private InputManager inputManager;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
