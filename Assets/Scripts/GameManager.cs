@@ -17,22 +17,28 @@ public class GameManager : MonoBehaviour
 
     private void Start()
     {
-        inputManager.OnResetPressed.AddListener(HandleReset);
         SetPins();
+        inputManager.OnResetPressed.AddListener(HandleReset);
     }
 
     private void HandleReset(){
-        ball.ResetBall();
+        score = 0;
+        scoreText.text = $"Score: {score}";
         SetPins();
+        ball.ResetBall();
     }
 
+
     private void SetPins(){
+
         if(pinObjects){
-            foreach( Transform child in pinObjects.transform){
+            foreach(Transform child in pinObjects.transform){
                 Destroy(child.gameObject);
             }
             Destroy(pinObjects);
         }
+        pinObjects = null;
+
         pinObjects = Instantiate(pinCollection, PinAnchor.transform.position, Quaternion.identity, transform);
 
         fallTriggers = FindObjectsByType<FallTrigger>(FindObjectsInactive.Include,FindObjectsSortMode.None);
