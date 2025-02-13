@@ -3,24 +3,24 @@ using UnityEngine;
 using UnityEngine.Events;
 using UnityEngine.InputSystem;
 
+[RequireComponent(typeof(Rigidbody))]
 public class BallController : MonoBehaviour
 {
     [SerializeField] private float force = 1f;
     [SerializeField] private Transform ballAnchor;
     [SerializeField] private Transform LaunchIndicator;
 
+    private bool isBallLaunched = false;
     private Rigidbody ballRB;
-    private bool isBallLaunched;
     [SerializeField] private InputManager inputManager;
 
     // Start is called once before the first execution of Update after the MonoBehaviour is created
     void Start()
     {
         ballRB = GetComponent<Rigidbody>();
+        Cursor.lockState = CursorLockMode.Locked;
         inputManager.OnSpacePressed.AddListener(LaunchBall);
-        transform.parent = ballAnchor;
-        transform.localPosition = Vector3.zero;
-        ballRB.isKinematic = true;
+        ResetBall();
     }
 
     // Update is called once per frame
@@ -32,5 +32,13 @@ public class BallController : MonoBehaviour
         ballRB.isKinematic = false;
         ballRB.AddForce(LaunchIndicator.forward * force, ForceMode.Impulse);
         LaunchIndicator.gameObject.SetActive(false);
+    }
+
+    public void ResetBall(){
+        isBallLaunched = false;
+        ballRB.isKinematic = true;
+        LaunchIndicator.gameObject.SetActive(true);
+        transform.parent = ballAnchor;
+        transform.localPosition = Vector3.zero;
     }
 }
