@@ -22,8 +22,6 @@ public class GameManager : MonoBehaviour
     }
 
     private void HandleReset(){
-        score = 0;
-        scoreText.text = $"Score: {score}";
         SetPins();
         ball.ResetBall();
     }
