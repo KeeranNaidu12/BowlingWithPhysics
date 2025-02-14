@@ -1,6 +1,9 @@
 Video Demonstration:
 
-https://github.com/user-attachments/assets/613cc57e-107d-43e7-9753-da9133e4c742
+
+https://github.com/user-attachments/assets/19e0751a-b9c2-4051-b808-3885f41bd40b
+
+
 
 This is my Bowling Game I made with Unity. The goal of the game is to hit as many pins as you can with your bowling ball!
 
